@@ -1,0 +1,1 @@
+# laenge-eines-Wortes-in-Pixel-auslesen
