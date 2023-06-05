@@ -1,0 +1,134 @@
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<div id="content">
+<h1>Pixel länge eines Wortes ermitteln</h1>
+<p>Bei keiner Angabe wird der Aktuelle Font-size des body ausgelesen.Oder geben sie selbst eine größe an.</p><br>
+<label>Gebe hier ein Wort ein</label><input type="text" id="texte" value="Wort"> <span>font-size:</span><input type="number" min="1" max="100" value="" id="px">:px
+<input type="button" id="los" value="Länge ermitteln"> <br>
+<p id="ausgabe"></p>   
+<p id="errors"></p>
+</div>
+<script>
+$(document).ready(function(){
+var buchstabe; 
+$('#los').click(function(){
+  var end=0;
+  $('#errors').html('');
+  wort=$('#texte').val();
+  array=wort.split('');
+    for(ff=0;ff<=array.length-1;ff++){
+      staben=array[ff]
+      einzelnd=String(staben);
+       if (!isNaN(einzelnd)){
+      einzelnd='ZAHL';
+       }
+        switch (einzelnd){
+           case 'A':buchstabe = 12;break;
+           case 'B':buchstabe = 11;break;
+           case 'C':buchstabe = 11;break;
+           case 'D':buchstabe = 12;break;
+           case 'E':buchstabe = 10;break;
+           case 'F':buchstabe = 9;break;
+           case 'G':buchstabe = 12;break;
+           case 'H':buchstabe = 12;break;
+           case 'I':buchstabe = 5;break;
+           case 'J':buchstabe = 6;break;
+           case 'K':buchstabe = 12;break;
+           case 'L':buchstabe = 10;break;
+           case 'M':buchstabe = 14;break;
+           case 'N':buchstabe = 12;break;
+           case 'O':buchstabe = 12;break;
+           case 'P':buchstabe = 9;break;
+           case 'Q':buchstabe = 12;break;
+           case 'R':buchstabe = 11;break;
+           case 'S':buchstabe = 9;break;
+           case 'T':buchstabe = 10;break;
+           case 'U':buchstabe = 12;break;
+           case 'V':buchstabe = 12;break;
+           case 'W':buchstabe = 15;break;
+           case 'X':buchstabe = 12;break;
+           case 'Y':buchstabe = 12;break;
+           case 'Z':buchstabe = 10;break;
+           case 'a':buchstabe = 7;break;
+           case 'b':buchstabe = 8;break;
+           case 'c':buchstabe = 7;break;
+           case 'd':buchstabe = 8;break;
+           case 'e':buchstabe = 7;break;
+           case 'f':buchstabe = 5;break;
+           case 'g':buchstabe = 8;break;
+           case 'h':buchstabe = 8;break;
+           case 'i':buchstabe = 4;break;
+           case 'j':buchstabe = 4;break;
+           case 'k':buchstabe = 8;break;
+           case 'l':buchstabe = 4;break;
+           case 'm':buchstabe = 12;break;
+           case 'n':buchstabe = 8;break;
+           case 'o':buchstabe = 8;break;
+           case 'p':buchstabe = 8;break;
+           case 'q':buchstabe = 8;break;
+           case 'r':buchstabe = 5;break;
+           case 's':buchstabe = 6;break;
+           case 't':buchstabe = 4;break;
+           case 'u':buchstabe = 8;break;
+           case 'v':buchstabe = 8;break;
+           case 'w':buchstabe = 12;break;
+           case 'x':buchstabe = 8;break;
+           case 'y':buchstabe = 8;break;
+           case 'z':buchstabe = 7;break;
+                    case '.':buchstabe = 4;break;  
+                    case ':':buchstabe = 4;break;  
+                    case ',':buchstabe = 4;break;  
+                    case ';':buchstabe = 4;break;  
+                    case '>':buchstabe = 9;break;  
+                    case '<':buchstabe = 9;break;  
+                    case '-':buchstabe = 5;break;  
+                    case '_':buchstabe = 8;break;  
+                    case '#':buchstabe = 8;break;  
+                    case '"':buchstabe = 7;break;  
+                    case '+':buchstabe = 9;break; 
+           
+                    case '*':buchstabe = 8;break;  
+                    case '~':buchstabe = 9;break;  
+                    case '|':buchstabe = 3;break;  
+                    case '!':buchstabe = 5;break;  
+                    case '§':buchstabe = 8;break;  
+                    case '$':buchstabe = 8;break;  
+                    case '%':buchstabe = 13;break;  
+           
+                    case '&':buchstabe = 12;break;  
+                    case '/':buchstabe = 4;break;  
+                    case '(':buchstabe = 5;break;  
+                    case ')':buchstabe = 5;break;  
+                    case '=':buchstabe = 9;break;  
+           
+                    case '?':buchstabe = 7;break;  
+                    case '`':buchstabe = 5;break;  
+                    case '´':buchstabe = 5;break;  
+                    case '}':buchstabe = 8;break;  
+                    case '{':buchstabe = 8;break;  
+                    case ']':buchstabe = 5;break;  
+                    case '[':buchstabe = 5;break;  
+                    case '/':buchstabe = 4;break;  
+   
+      case 'ZAHL':buchstabe = 8;break;
+     default:buchstabe = 0;    
+     $('#errors').html($('#errors').html()+'<br>Nicht gelesen = '+einzelnd)       
+}
+      pixel=$('#px').val();
+      if(pixel==''){
+        g=$('body').css('font-size')
+        pixel_angabe=g.replace('px','') 
+        pii='Bei Aktuell benutzten  font-size: von '+pixel_angabe+' Pixeln';
+      }else{
+        pixel_angabe=$('#px').val();
+        pii='Bei font-size:'+pixel_angabe+' Pixel';
+      }
+      normal=16;
+      einpixel=100/normal
+      neu=einpixel*pixel_angabe/100;
+      neu=buchstabe*neu;
+      end += neu;   
+      $('#ausgabe').html('Pixel= '+end+'<br>'+pii);
+ }
+});
+});
+</script>
